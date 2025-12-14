@@ -1,7 +1,7 @@
 // src/components/FormBuilder.tsx
 "use no memo";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -14,7 +14,7 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
   config,
   onSubmit,
   onSuccess,
-  onError,
+  // onError,
   className = "",
   classNames = {},
 }) => {
@@ -71,11 +71,11 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
   const formClasses = `space-y-4 ${classNames.form || ""}`;
 
   const titleClasses = `text-2xl font-bold text-gray-900 mb-2 ${
-    config.titleClassName || classNames.title || ""
+    config.titleClassName || classNames?.title || ""
   }`;
 
   const descriptionClasses = `text-gray-600 mb-6 ${
-    config.descriptionClassName || classNames.description || ""
+    config.descriptionClassName || classNames?.description || ""
   }`;
 
   const buttonClasses = `w-full bg-blue-600 text-white py-3 px-4 rounded-lg 

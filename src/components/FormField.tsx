@@ -53,29 +53,29 @@ export const FormField: React.FC<FormFieldProps> = ({
   }
 
   // Merge default classes with custom classes
-  const wrapperClasses = `space-y-2 ${
-    field.wrapperClassName || classNames.fieldWrapper || ""
-  }`;
+  // const wrapperClasses = `space-y-2 ${
+  //   field.wrapperClassName || classNames.fieldWrapper || ""
+  // }`;
 
-  const labelClasses = `block text-sm font-medium text-gray-700 ${
-    field.labelClassName || classNames.label || ""
-  }`;
+  // const labelClasses = `block text-sm font-medium text-gray-700 ${
+  //   field.labelClassName || classNames.label || ""
+  // }`;
 
-  const inputClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-    ${error ? "border-red-500" : "border-gray-300"}
-    ${field.inputClassName || classNames.input || ""}`;
+  // const inputClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+  //   ${error ? "border-red-500" : "border-gray-300"}
+  //   ${field.inputClassName || classNames.input || ""}`;
 
-  const textareaClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-    ${error ? "border-red-500" : "border-gray-300"}
-    ${field.inputClassName || classNames.textarea || ""}`;
+  // const textareaClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+  //   ${error ? "border-red-500" : "border-gray-300"}
+  //   ${field.inputClassName || classNames.textarea || ""}`;
 
-  const selectClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-    ${error ? "border-red-500" : "border-gray-300"}
-    ${field.inputClassName || classNames.select || ""}`;
+  // const selectClasses = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+  //   ${error ? "border-red-500" : "border-gray-300"}
+  //   ${field.inputClassName || classNames.select || ""}`;
 
-  const errorClasses = `text-sm text-red-600 ${
-    field.errorClassName || classNames.error || ""
-  }`;
+  // const errorClasses = `text-sm text-red-600 ${
+  //   field.errorClassName || classNames.error || ""
+  // }`;
 
   //Render appropriate field type
   switch (field.type) {

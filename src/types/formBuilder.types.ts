@@ -86,6 +86,23 @@ export interface FormConfig {
   };
 }
 
+export interface FormClassNames {
+  container?: string;
+  form?: string;
+  title?: string;
+  description?: string;
+  fieldWrapper?: string;
+  label?: string;
+  input?: string;
+  textarea?: string;
+  select?: string;
+  checkbox?: string;
+  radio?: string;
+  error?: string;
+  button?: string;
+  buttonDisabled?: string;
+}
+
 // Generic type for form data - can be customized per form
 export type FormData = Record<string, unknown>;
 
@@ -95,18 +112,21 @@ export interface FormBuilderProps {
   onSuccess?: (data: Record<string, unknown>) => void | Promise<void>;
   onError?: (errors: Record<string, unknown>) => void;
   className?: string;
-  classNames?: {
-    container?: string; // Form container
-    form?: string; // Form element
-    fieldWrapper?: string; // Each field wrapper
-    label?: string; // All labels
-    input?: string; // All input fields
-    textarea?: string; // Textareas
-    select?: string; // Select dropdowns
-    checkbox?: string; // Checkboxes
-    radio?: string; // Radio buttons
-    error?: string; // Error messages
-    button?: string; // Submit button
-    buttonDisabled?: string; // Submit button when disabled
-  };
+  classNames?: FormClassNames;
+  // classNames?: {
+  //   container?: string; // Form container
+  //   form?: string; // Form element
+  //   title?: string;
+  //   description?: string;
+  //   fieldWrapper?: string; // Each field wrapper
+  //   label?: string; // All labels
+  //   input?: string; // All input fields
+  //   textarea?: string; // Textareas
+  //   select?: string; // Select dropdowns
+  //   checkbox?: string; // Checkboxes
+  //   radio?: string; // Radio buttons
+  //   error?: string; // Error messages
+  //   button?: string; // Submit button
+  //   buttonDisabled?: string; // Submit button when disabled
+  // };
 }

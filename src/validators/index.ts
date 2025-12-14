@@ -35,10 +35,9 @@ export const createFieldSchema = (field: FieldConfig) => {
     case "tel":
       schema = z
         .string()
-        .regex(
-          /^01[3-9]\d{8}$/,
-          "Invalid Bangladesh phone number (e.g., 01712345678)"
-        );
+        .regex(/^\+?\d+$/, "Phone number must contain only digits")
+        .min(6, "Phone number is too short")
+        .max(15, "Phone number is too long");
       break;
 
     case "date":
