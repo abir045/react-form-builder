@@ -1,5 +1,6 @@
 // src/examples/BasicFormDemo.tsx
 
+import { DateInput } from "../components/FieldTypes/DateInput";
 import { FormBuilder } from "../components/FormBuilder";
 import type { FormConfig } from "../types/formBuilder.types";
 // import { FormConfig } from '../types/formBuilder.types';

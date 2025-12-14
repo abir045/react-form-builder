@@ -55,6 +55,8 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
       }
 
       console.log(data);
+
+      // Access the file from FileList
     } catch (error) {
       // if(onError) onError(error as Error )
       console.error("Form submission error:", error);
