@@ -11,6 +11,7 @@ import type { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 import { TextareaInput } from "./FieldTypes/TextareaInput";
 import { RadioInput } from "./FieldTypes/RadioInput";
 import { DateInput } from "./FieldTypes/DateInput";
+import { FileInput } from "./FieldTypes/FileInput";
 
 interface FormFieldProps {
   field: FieldConfig;
@@ -137,6 +138,16 @@ export const FormField: React.FC<FormFieldProps> = ({
     case "date":
       return (
         <DateInput
+          field={field}
+          register={register}
+          error={error}
+          classNames={classNames}
+        />
+      );
+
+    case "file":
+      return (
+        <FileInput
           field={field}
           register={register}
           error={error}

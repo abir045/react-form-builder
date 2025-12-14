@@ -715,244 +715,375 @@ import type { FormConfig } from "../types/formBuilder.types";
 //   ],
 // };
 
-const hackathonFormJSON: FormConfig = {
-  formId: "hackathon-2024",
-  title: "Hackathon 2024 Registration",
-  titleClassName:
-    "text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 text-center",
-  description: "Join us for 48 hours of innovation, coding, and fun!",
-  descriptionClassName: "text-xl text-gray-600 text-center italic font-light",
+// const hackathonFormJSON: FormConfig = {
+//   formId: "hackathon-2024",
+//   title: "Hackathon 2024 Registration",
+//   titleClassName:
+//     "text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 text-center",
+//   description: "Join us for 48 hours of innovation, coding, and fun!",
+//   descriptionClassName: "text-xl text-gray-600 text-center italic font-light",
+//   resetOnSuccess: true,
+
+//   submitButton: {
+//     text: "🚀 Register for Hackathon",
+//     loadingText: "⏳ Submitting...",
+//     className:
+//       "bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-lg font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300",
+//   },
+
+//   fields: [
+//     // HEADING with custom styling
+//     {
+//       type: "heading",
+//       name: "personal_info",
+//       label: "👤 Personal Information",
+//       inputClassName:
+//         "text-3xl font-extrabold text-purple-700 border-b-4 border-purple-300 pb-3 mt-8",
+//       wrapperClassName: "bg-purple-50 p-4 rounded-lg",
+//     },
+
+//     // TEXT INPUT with custom styling
+//     {
+//       name: "full_name",
+//       type: "text",
+//       label: "Full Name",
+//       placeholder: "John Doe",
+//       required: true,
+//       labelClassName:
+//         "text-lg font-bold text-purple-800 uppercase tracking-wide",
+//       inputClassName:
+//         "bg-purple-50 border-2 border-purple-300 focus:border-purple-600 focus:ring-4 focus:ring-purple-200 rounded-xl text-lg font-semibold",
+//       wrapperClassName:
+//         "bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow",
+//       errorClassName: "text-red-600 font-bold text-base",
+//     },
+
+//     // EMAIL INPUT with custom styling
+//     {
+//       name: "email",
+//       type: "email",
+//       label: "Email Address",
+//       placeholder: "john@example.com",
+//       required: true,
+//       labelClassName: "text-base font-semibold text-blue-700",
+//       inputClassName:
+//         "bg-blue-50 border-2 border-blue-400 focus:border-blue-600 rounded-2xl shadow-inner",
+//       wrapperClassName:
+//         "p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg",
+//       errorClassName: "text-red-700 italic font-semibold",
+//     },
+
+//     // PHONE INPUT with custom styling
+//     {
+//       name: "phone",
+//       type: "tel",
+//       label: "Phone Number",
+//       placeholder: "+1 (555) 123-4567",
+//       required: true,
+//       labelClassName: "text-green-700 font-bold",
+//       inputClassName: "bg-green-50 border-green-400 border-2 rounded-full px-6",
+//       wrapperClassName: "bg-green-100 p-4 rounded-2xl",
+//     },
+
+//     // DATE INPUT with custom styling
+//     {
+//       name: "date_of_birth",
+//       type: "date",
+//       label: "Date of Birth",
+//       required: true,
+//       labelClassName: "text-orange-700 font-extrabold text-lg",
+//       inputClassName:
+//         "bg-orange-50 border-orange-400 border-3 rounded-lg shadow-lg",
+//       wrapperClassName: "bg-orange-100 p-5 rounded-xl",
+//     },
+
+//     // HEADING 2
+//     {
+//       type: "heading",
+//       name: "education_heading",
+//       label: "🎓 Education & Background",
+//       inputClassName:
+//         "text-3xl font-black text-blue-600 border-l-8 border-blue-600 pl-4",
+//       wrapperClassName:
+//         "bg-gradient-to-r from-blue-100 to-cyan-100 p-5 rounded-2xl my-6",
+//     },
+
+//     // RADIO INPUT with custom styling
+//     {
+//       name: "student_status",
+//       type: "radio",
+//       label: "Are you a student?",
+//       required: true,
+//       options: [
+//         { label: "✅ Yes, I'm a student", value: "yes" },
+//         { label: "💼 No, I'm a professional", value: "no" },
+//         { label: "🎓 Recent graduate", value: "graduate" },
+//       ],
+//       labelClassName: "text-2xl font-bold text-indigo-700",
+//       inputClassName:
+//         "w-6 h-6 text-indigo-600 focus:ring-indigo-500 border-indigo-400",
+//       wrapperClassName:
+//         "bg-white border-4 border-indigo-300 p-6 rounded-2xl shadow-xl",
+//     },
+
+//     // SELECT INPUT with custom styling
+//     {
+//       name: "year_of_study",
+//       type: "select",
+//       label: "Year of Study",
+//       required: true,
+//       options: [
+//         { label: "Freshman (1st year)", value: "1" },
+//         { label: "Sophomore (2nd year)", value: "2" },
+//         { label: "Junior (3rd year)", value: "3" },
+//         { label: "Senior (4th year)", value: "4" },
+//       ],
+//       labelClassName: "text-pink-700 font-black text-xl",
+//       inputClassName:
+//         "bg-pink-50 border-pink-500 border-3 rounded-2xl text-pink-900 font-bold shadow-lg cursor-pointer",
+//       wrapperClassName:
+//         "bg-gradient-to-br from-pink-100 to-rose-100 p-6 rounded-3xl",
+//     },
+
+//     // HEADING 3
+//     {
+//       type: "heading",
+//       name: "experience_heading",
+//       label: "💻 Technical Experience",
+//       inputClassName:
+//         "text-4xl font-black text-green-600 underline decoration-wavy decoration-green-400",
+//       wrapperClassName:
+//         "bg-green-50 p-6 rounded-3xl border-4 border-green-400 my-8",
+//     },
+
+//     // TEXTAREA with custom styling
+//     {
+//       name: "skills",
+//       type: "textarea",
+//       label: "Technical Skills",
+//       placeholder: "Python, React, Machine Learning, Docker...",
+//       required: true,
+//       rows: 6,
+//       labelClassName: "text-2xl font-extrabold text-teal-700 uppercase",
+//       inputClassName:
+//         "bg-teal-50 border-4 border-teal-400 focus:border-teal-600 rounded-3xl text-lg font-mono shadow-2xl",
+//       wrapperClassName:
+//         "bg-gradient-to-br from-teal-100 to-cyan-100 p-8 rounded-3xl border-2 border-teal-300",
+//       errorClassName: "text-red-700 font-black text-lg",
+//     },
+
+//     // URL INPUT with custom styling
+//     {
+//       name: "github_url",
+//       type: "url",
+//       label: "GitHub Profile (Optional)",
+//       placeholder: "https://github.com/yourusername",
+//       labelClassName: "text-gray-800 font-bold text-lg",
+//       inputClassName:
+//         "bg-gray-100 border-gray-400 border-2 rounded-xl font-mono text-gray-700",
+//       wrapperClassName: "bg-gray-50 p-4 rounded-xl shadow-inner",
+//     },
+
+//     // HEADING 4
+//     {
+//       type: "heading",
+//       name: "team_heading",
+//       label: "👥 Team Information",
+//       inputClassName:
+//         "text-3xl font-black text-yellow-600 bg-yellow-100 p-4 rounded-2xl shadow-lg",
+//       wrapperClassName: "my-6",
+//     },
+
+//     // NUMBER INPUT with custom styling
+//     {
+//       name: "team_size",
+//       type: "number",
+//       label: "Team Size (including you)",
+//       placeholder: "4",
+//       required: true,
+//       labelClassName: "text-yellow-800 font-extrabold text-xl",
+//       inputClassName:
+//         "bg-yellow-50 border-yellow-500 border-4 rounded-full text-center text-2xl font-black text-yellow-900",
+//       wrapperClassName: "bg-yellow-100 p-6 rounded-3xl shadow-2xl",
+//     },
+
+//     // CHECKBOX with custom styling
+//     {
+//       name: "code_of_conduct",
+//       type: "checkbox",
+//       label: "I agree to abide by the MLH Code of Conduct",
+//       required: true,
+//       labelClassName: "text-red-700 font-bold text-lg",
+//       inputClassName:
+//         "w-8 h-8 text-red-600 focus:ring-red-500 border-red-400 rounded-lg",
+//       wrapperClassName:
+//         "bg-red-50 border-4 border-red-300 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow",
+//     },
+
+//     // CHECKBOX 2 with different styling
+//     {
+//       name: "marketing_emails",
+//       type: "checkbox",
+//       label: "I want to receive emails about future events",
+//       labelClassName: "text-gray-600 italic",
+//       inputClassName: "w-5 h-5 text-blue-500 rounded",
+//       wrapperClassName: "p-3 bg-gray-50 rounded-lg",
+//     },
+
+//     // HEADING 5
+//     {
+//       type: "heading",
+//       name: "final_heading",
+//       label: "🎉 Almost Done!",
+//       inputClassName:
+//         "text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 text-center animate-pulse",
+//       wrapperClassName:
+//         "bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 p-8 rounded-3xl my-10 border-8 border-double border-purple-400",
+//     },
+
+//     // TEXTAREA 2
+//     {
+//       name: "additional_comments",
+//       type: "textarea",
+//       label: "Any questions or special requests?",
+//       placeholder: "Let us know...",
+//       rows: 3,
+//       labelClassName: "text-indigo-600 font-semibold",
+//       inputClassName: "bg-indigo-50 border-indigo-300 rounded-2xl",
+//       wrapperClassName: "p-4",
+//     },
+//   ],
+// };
+
+const allFieldsConfig: FormConfig = {
+  formId: "test-form-all-fields",
+  title: "Form Builder Test",
+  description:
+    "This form includes all supported field types for validation testing",
+  multiStep: false,
   resetOnSuccess: true,
-
-  submitButton: {
-    text: "🚀 Register for Hackathon",
-    loadingText: "⏳ Submitting...",
-    className:
-      "bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-lg font-bold shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300",
-  },
-
   fields: [
-    // HEADING with custom styling
     {
-      type: "heading",
-      name: "personal_info",
-      label: "👤 Personal Information",
-      inputClassName:
-        "text-3xl font-extrabold text-purple-700 border-b-4 border-purple-300 pb-3 mt-8",
-      wrapperClassName: "bg-purple-50 p-4 rounded-lg",
-    },
-
-    // TEXT INPUT with custom styling
-    {
-      name: "full_name",
+      name: "fullName",
       type: "text",
       label: "Full Name",
-      placeholder: "John Doe",
+      placeholder: "Enter your full name",
       required: true,
-      labelClassName:
-        "text-lg font-bold text-purple-800 uppercase tracking-wide",
-      inputClassName:
-        "bg-purple-50 border-2 border-purple-300 focus:border-purple-600 focus:ring-4 focus:ring-purple-200 rounded-xl text-lg font-semibold",
-      wrapperClassName:
-        "bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow",
-      errorClassName: "text-red-600 font-bold text-base",
+      validation: {
+        minLength: 3,
+        maxLength: 50,
+      },
     },
-
-    // EMAIL INPUT with custom styling
     {
       name: "email",
       type: "email",
       label: "Email Address",
-      placeholder: "john@example.com",
+      placeholder: "example@email.com",
       required: true,
-      labelClassName: "text-base font-semibold text-blue-700",
-      inputClassName:
-        "bg-blue-50 border-2 border-blue-400 focus:border-blue-600 rounded-2xl shadow-inner",
-      wrapperClassName:
-        "p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg",
-      errorClassName: "text-red-700 italic font-semibold",
     },
-
-    // PHONE INPUT with custom styling
+    {
+      name: "password",
+      type: "password",
+      label: "Password",
+      required: true,
+      validation: {
+        minLength: 8,
+      },
+    },
     {
       name: "phone",
       type: "tel",
       label: "Phone Number",
-      placeholder: "+1 (555) 123-4567",
+      placeholder: "+1234567890",
       required: true,
-      labelClassName: "text-green-700 font-bold",
-      inputClassName: "bg-green-50 border-green-400 border-2 rounded-full px-6",
-      wrapperClassName: "bg-green-100 p-4 rounded-2xl",
+      validation: {
+        minLength: 10,
+        maxLength: 15,
+      },
     },
-
-    // DATE INPUT with custom styling
     {
-      name: "date_of_birth",
-      type: "date",
-      label: "Date of Birth",
-      required: true,
-      labelClassName: "text-orange-700 font-extrabold text-lg",
-      inputClassName:
-        "bg-orange-50 border-orange-400 border-3 rounded-lg shadow-lg",
-      wrapperClassName: "bg-orange-100 p-5 rounded-xl",
-    },
-
-    // HEADING 2
-    {
-      type: "heading",
-      name: "education_heading",
-      label: "🎓 Education & Background",
-      inputClassName:
-        "text-3xl font-black text-blue-600 border-l-8 border-blue-600 pl-4",
-      wrapperClassName:
-        "bg-gradient-to-r from-blue-100 to-cyan-100 p-5 rounded-2xl my-6",
-    },
-
-    // RADIO INPUT with custom styling
-    {
-      name: "student_status",
-      type: "radio",
-      label: "Are you a student?",
-      required: true,
-      options: [
-        { label: "✅ Yes, I'm a student", value: "yes" },
-        { label: "💼 No, I'm a professional", value: "no" },
-        { label: "🎓 Recent graduate", value: "graduate" },
-      ],
-      labelClassName: "text-2xl font-bold text-indigo-700",
-      inputClassName:
-        "w-6 h-6 text-indigo-600 focus:ring-indigo-500 border-indigo-400",
-      wrapperClassName:
-        "bg-white border-4 border-indigo-300 p-6 rounded-2xl shadow-xl",
-    },
-
-    // SELECT INPUT with custom styling
-    {
-      name: "year_of_study",
-      type: "select",
-      label: "Year of Study",
-      required: true,
-      options: [
-        { label: "Freshman (1st year)", value: "1" },
-        { label: "Sophomore (2nd year)", value: "2" },
-        { label: "Junior (3rd year)", value: "3" },
-        { label: "Senior (4th year)", value: "4" },
-      ],
-      labelClassName: "text-pink-700 font-black text-xl",
-      inputClassName:
-        "bg-pink-50 border-pink-500 border-3 rounded-2xl text-pink-900 font-bold shadow-lg cursor-pointer",
-      wrapperClassName:
-        "bg-gradient-to-br from-pink-100 to-rose-100 p-6 rounded-3xl",
-    },
-
-    // HEADING 3
-    {
-      type: "heading",
-      name: "experience_heading",
-      label: "💻 Technical Experience",
-      inputClassName:
-        "text-4xl font-black text-green-600 underline decoration-wavy decoration-green-400",
-      wrapperClassName:
-        "bg-green-50 p-6 rounded-3xl border-4 border-green-400 my-8",
-    },
-
-    // TEXTAREA with custom styling
-    {
-      name: "skills",
-      type: "textarea",
-      label: "Technical Skills",
-      placeholder: "Python, React, Machine Learning, Docker...",
-      required: true,
-      rows: 6,
-      labelClassName: "text-2xl font-extrabold text-teal-700 uppercase",
-      inputClassName:
-        "bg-teal-50 border-4 border-teal-400 focus:border-teal-600 rounded-3xl text-lg font-mono shadow-2xl",
-      wrapperClassName:
-        "bg-gradient-to-br from-teal-100 to-cyan-100 p-8 rounded-3xl border-2 border-teal-300",
-      errorClassName: "text-red-700 font-black text-lg",
-    },
-
-    // URL INPUT with custom styling
-    {
-      name: "github_url",
-      type: "url",
-      label: "GitHub Profile (Optional)",
-      placeholder: "https://github.com/yourusername",
-      labelClassName: "text-gray-800 font-bold text-lg",
-      inputClassName:
-        "bg-gray-100 border-gray-400 border-2 rounded-xl font-mono text-gray-700",
-      wrapperClassName: "bg-gray-50 p-4 rounded-xl shadow-inner",
-    },
-
-    // HEADING 4
-    {
-      type: "heading",
-      name: "team_heading",
-      label: "👥 Team Information",
-      inputClassName:
-        "text-3xl font-black text-yellow-600 bg-yellow-100 p-4 rounded-2xl shadow-lg",
-      wrapperClassName: "my-6",
-    },
-
-    // NUMBER INPUT with custom styling
-    {
-      name: "team_size",
+      name: "age",
       type: "number",
-      label: "Team Size (including you)",
-      placeholder: "4",
+      label: "Age",
       required: true,
-      labelClassName: "text-yellow-800 font-extrabold text-xl",
-      inputClassName:
-        "bg-yellow-50 border-yellow-500 border-4 rounded-full text-center text-2xl font-black text-yellow-900",
-      wrapperClassName: "bg-yellow-100 p-6 rounded-3xl shadow-2xl",
+      validation: {
+        min: 18,
+        max: 65,
+      },
     },
-
-    // CHECKBOX with custom styling
     {
-      name: "code_of_conduct",
-      type: "checkbox",
-      label: "I agree to abide by the MLH Code of Conduct",
-      required: true,
-      labelClassName: "text-red-700 font-bold text-lg",
-      inputClassName:
-        "w-8 h-8 text-red-600 focus:ring-red-500 border-red-400 rounded-lg",
-      wrapperClassName:
-        "bg-red-50 border-4 border-red-300 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow",
-    },
-
-    // CHECKBOX 2 with different styling
-    {
-      name: "marketing_emails",
-      type: "checkbox",
-      label: "I want to receive emails about future events",
-      labelClassName: "text-gray-600 italic",
-      inputClassName: "w-5 h-5 text-blue-500 rounded",
-      wrapperClassName: "p-3 bg-gray-50 rounded-lg",
-    },
-
-    // HEADING 5
-    {
-      type: "heading",
-      name: "final_heading",
-      label: "🎉 Almost Done!",
-      inputClassName:
-        "text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-blue-500 to-purple-600 text-center animate-pulse",
-      wrapperClassName:
-        "bg-gradient-to-r from-green-100 via-blue-100 to-purple-100 p-8 rounded-3xl my-10 border-8 border-double border-purple-400",
-    },
-
-    // TEXTAREA 2
-    {
-      name: "additional_comments",
+      name: "bio",
       type: "textarea",
-      label: "Any questions or special requests?",
-      placeholder: "Let us know...",
-      rows: 3,
-      labelClassName: "text-indigo-600 font-semibold",
-      inputClassName: "bg-indigo-50 border-indigo-300 rounded-2xl",
-      wrapperClassName: "p-4",
+      label: "Bio",
+      placeholder: "Tell us about yourself",
+      validation: {
+        maxLength: 200,
+      },
+    },
+    {
+      name: "website",
+      type: "url",
+      label: "Website",
+      placeholder: "https://example.com",
+    },
+    {
+      name: "birthDate",
+      type: "date",
+      label: "Birth Date",
+      required: true,
+    },
+    {
+      name: "gender",
+      type: "radio",
+      label: "Gender",
+      required: true,
+      options: [
+        { label: "Male", value: "male" },
+        { label: "Female", value: "female" },
+        { label: "Other", value: "other" },
+      ],
+    },
+    {
+      name: "country",
+      type: "select",
+      label: "Country",
+      required: true,
+      options: [
+        { label: "United States", value: "US" },
+        { label: "Bangladesh", value: "BD" },
+        { label: "United Kingdom", value: "UK" },
+      ],
+    },
+    {
+      name: "terms",
+      type: "checkbox",
+      label: "I agree to the terms and conditions",
+      required: true,
+    },
+    {
+      name: "resume",
+      type: "file",
+      label: "Upload Resume",
+      required: true,
+      accept: ".pdf,.doc,.docx",
+      maxSize: 2097152,
+    },
+    {
+      name: "sectionHeading",
+      type: "heading",
+      label: "Additional Information",
+    },
+    {
+      name: "portfolio",
+      type: "url",
+      label: "Portfolio URL",
+      placeholder: "https://yourportfolio.com",
     },
   ],
+  submitButton: {
+    text: "Submit Form",
+    loadingText: "Submitting...",
+  },
 };
 
 export const BasicFormDemo = () => {
@@ -971,7 +1102,7 @@ export const BasicFormDemo = () => {
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <FormBuilder
-        config={hackathonFormJSON}
+        config={allFieldsConfig}
         onSubmit={handleSubmit}
         onError={handleError}
         classNames={{
