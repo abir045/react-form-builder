@@ -76,7 +76,7 @@ export const TextareaInput: React.FC<TextareaInputProps> = ({
   }`;
 
   return (
-    <div className="mb-4">
+    <div className={wrapperClasses}>
       <label htmlFor={field.name} className={labelClasses}>
         {field.label}
         {field.required && <span className="text-red-500 ml-1">*</span>}

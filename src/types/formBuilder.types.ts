@@ -12,7 +12,8 @@ export type FieldType =
   | "radio"
   | "date"
   | "file"
-  | "heading";
+  | "heading"
+  | "url";
 
 export interface ValidationRule {
   required?: boolean;

@@ -6,6 +6,14 @@ import type { FieldConfig } from "../types/formBuilder.types";
 /**
  * Creates a Zod schema for a single field based on its configuration
  */
+
+export const URL_VALIDATION = {
+  pattern: {
+    value: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+    message: "Please enter a valid URL",
+  },
+};
+
 export const createFieldSchema = (field: FieldConfig) => {
   let schema: any;
 
@@ -13,6 +21,10 @@ export const createFieldSchema = (field: FieldConfig) => {
   switch (field.type) {
     case "email":
       schema = z.string().email("Invalid email address");
+      break;
+
+    case "url": // Add URL case
+      schema = z.string().url("Please enter a valid URL");
       break;
 
     case "number":
@@ -121,7 +133,8 @@ export const createFieldSchema = (field: FieldConfig) => {
       (field.type === "text" ||
         field.type === "password" ||
         field.type === "textarea" ||
-        field.type === "email")
+        field.type === "email" ||
+        field.type === "url")
     ) {
       schema = schema.min(
         minLength,
@@ -134,7 +147,8 @@ export const createFieldSchema = (field: FieldConfig) => {
       (field.type === "text" ||
         field.type === "password" ||
         field.type === "textarea" ||
-        field.type === "email")
+        field.type === "email" ||
+        field.type === "url")
     ) {
       schema = schema.max(
         maxLength,
