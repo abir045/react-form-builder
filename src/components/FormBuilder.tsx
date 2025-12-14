@@ -1,4 +1,5 @@
 // src/components/FormBuilder.tsx
+"use no memo";
 
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -12,8 +13,10 @@ import type { FormBuilderProps } from "../types/formBuilder.types";
 export const FormBuilder: React.FC<FormBuilderProps> = ({
   config,
   onSubmit,
+  onSuccess,
   onError,
   className = "",
+  classNames = {},
 }) => {
   // Get fields from config (support both single and multi-step forms)
   const fields = config.multiStep ? [] : config.fields || [];
@@ -36,79 +39,72 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
   // Watch all form values for conditional logic
   const watchValues = watch();
 
-  // Auto-save functionality
-  useEffect(() => {
-    if (config.autoSave) {
-      const delay = config.autoSaveDelay || 1000;
-      const timer = setTimeout(() => {
-        const draftKey = `form-draft-${config.formId}`;
-        localStorage.setItem(draftKey, JSON.stringify(watchValues));
-        console.log("💾 Draft auto-saved");
-      }, delay);
-
-      return () => clearTimeout(timer);
-    }
-  }, [watchValues, config.autoSave, config.autoSaveDelay, config.formId]);
-
-  // Load saved draft on mount
-  useEffect(() => {
-    if (config.autoSave) {
-      const draftKey = `form-draft-${config.formId}`;
-      const savedDraft = localStorage.getItem(draftKey);
-
-      if (savedDraft) {
-        try {
-          const parsedDraft = JSON.parse(savedDraft);
-          reset(parsedDraft);
-          console.log("📂 Draft loaded from storage");
-        } catch (error) {
-          console.error("Failed to load draft:", error);
-        }
-      }
-    }
-  }, [config.autoSave, config.formId, reset]);
-
   // Handle form submission
   const handleFormSubmit = async (data: Record<string, unknown>) => {
     try {
-      await onSubmit(data);
-
-      // Clear draft after successful submission
-      if (config.autoSave) {
-        const draftKey = `form-draft-${config.formId}`;
-        localStorage.removeItem(draftKey);
-        console.log("🗑️ Draft cleared after submission");
+      if (onSubmit) {
+        await onSubmit(data);
       }
+
+      if (onSuccess) {
+        await onSuccess(data);
+      }
+
+      if (config.resetOnSuccess !== false) {
+        reset();
+      }
+
+      console.log(data);
     } catch (error) {
+      // if(onError) onError(error as Error )
       console.error("Form submission error:", error);
-      onError?.(error as Record<string, unknown>);
+
+      throw error;
     }
   };
 
+  // Merge default classes with custom classes
+  const containerClasses = `max-w-7xl mx-auto p-6 bg-white rounded-lg shadow-md ${
+    classNames.container || ""
+  } ${className}`;
+
+  const formClasses = `space-y-4 ${classNames.form || ""}`;
+
+  const titleClasses = `text-2xl font-bold text-gray-900 mb-2 ${
+    config.titleClassName || classNames.title || ""
+  }`;
+
+  const descriptionClasses = `text-gray-600 mb-6 ${
+    config.descriptionClassName || classNames.description || ""
+  }`;
+
+  const buttonClasses = `w-full bg-blue-600 text-white py-3 px-4 rounded-lg 
+    hover:bg-blue-700 transition-colors duration-200 font-medium text-sm
+    flex items-center justify-center gap-2
+    ${classNames.button || ""} ${config.submitButton?.className || ""}`;
+
+  const buttonDisabledClasses = `disabled:bg-gray-400 disabled:cursor-not-allowed
+    ${classNames.buttonDisabled || ""}`;
+
   return (
-    <div
-      className={`max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md ${className}`}
-    >
+    <div className={containerClasses}>
       {/* Form Header */}
-      {config.title && (
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          {config.title}
-        </h2>
-      )}
+      {config.title && <h2 className={titleClasses}>{config.title}</h2>}
 
       {config.description && (
-        <p className="text-gray-600 mb-6">{config.description}</p>
+        <p className={descriptionClasses}>{config.description}</p>
       )}
 
       {/* Form Fields */}
-      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(handleFormSubmit)} className={formClasses}>
         {fields.map((field) => (
           <FormField
             key={field.name}
             field={field}
             register={register}
-            error={errors[field.name]}
+            error={errors[field.name] as any}
             watchValues={watchValues}
+            classNames={classNames}
           />
         ))}
 
@@ -116,12 +112,9 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg 
-                     hover:bg-blue-700 
-                     disabled:bg-gray-400 disabled:cursor-not-allowed 
-                     flex items-center justify-center gap-2
-                     transition-colors duration-200
-                     font-medium text-sm"
+          className={`${buttonClasses} ${
+            isSubmitting ? buttonDisabledClasses : ""
+          }`}
         >
           {isSubmitting && <Loader2 className="animate-spin h-5 w-5" />}
           {isSubmitting
@@ -129,13 +122,6 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
             : config.submitButton?.text || "Submit"}
         </button>
       </form>
-
-      {/* Auto-save indicator */}
-      {config.autoSave && (
-        <p className="text-xs text-gray-500 mt-4 text-center">
-          💾 Changes are automatically saved
-        </p>
-      )}
     </div>
   );
 };

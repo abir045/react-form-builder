@@ -7,52 +7,61 @@ interface CheckboxInputProps {
   field: FieldConfig;
   register: UseFormRegister<FieldValues>;
   error?: FieldError;
+  classNames?: {
+    fieldWrapper?: string;
+    label?: string;
+    checkbox?: string;
+    error?: string;
+  };
 }
 
 export const CheckboxInput: React.FC<CheckboxInputProps> = ({
   field,
   register,
   error,
+  classNames = {},
 }) => {
+  const wrapperClasses = `flex items-center gap-2 ${
+    field.wrapperClassName || classNames.fieldWrapper || ""
+  }`;
+
+  const labelClasses = `text-sm font-medium text-gray-700 ${
+    field.labelClassName || classNames.label || ""
+  }`;
+
+  const checkboxClasses = `h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded ${
+    field.inputClassName || classNames.checkbox || ""
+  }`;
+
+  const errorClasses = `text-sm text-red-600 ${
+    field.errorClassName || classNames.error || ""
+  }`;
+
   return (
     <div className="mb-4">
-      <div className="flex items-start">
+      <div className={wrapperClasses}>
         <div className="flex items-center h-5">
           <input
             id={field.name}
             type="checkbox"
             disabled={field.disabled}
-            className={clsx(
-              "w-4 h-4 rounded",
-              "border-gray-300",
-              "text-blue-600",
-              "focus:ring-2 focus:ring-blue-500",
-              "transition-colors duration-200",
-              error && "border-red-500",
-              field.disabled && "cursor-not-allowed opacity-60"
-            )}
+            className={checkboxClasses}
             {...register(field.name)}
           />
         </div>
-        <div className="ml-3 text-sm">
-          <label
-            htmlFor={field.name}
-            className={clsx(
-              "font-medium text-gray-700",
-              field.disabled && "opacity-60"
-            )}
-          >
-            {field.label}
-            {field.required && <span className="text-red-500 ml-1">*</span>}
-          </label>
-          {field.helperText && !error && (
-            <p className="text-gray-500 mt-1">{field.helperText}</p>
-          )}
-        </div>
+        {/* <div className="ml-3 text-sm"> */}
+        <label htmlFor={field.name} className={labelClasses}>
+          {field.label}
+          {field.required && <span className="text-red-500 ml-1">*</span>}
+        </label>
+        {field.helperText && !error && (
+          <p className="text-gray-500 mt-1">{field.helperText}</p>
+        )}
+        {/* </div> */}
       </div>
 
       {error && (
-        <p className="mt-2 text-sm text-red-600 flex items-center gap-1 ml-7">
+        <p className={errorClasses}>
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"

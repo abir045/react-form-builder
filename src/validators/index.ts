@@ -16,9 +16,8 @@ export const createFieldSchema = (field: FieldConfig) => {
       break;
 
     case "number":
-      schema = z.coerce.number({
-        invalid_type_error: "Must be a number",
-      });
+      // Use z.coerce.number() - it automatically handles type coercion
+      schema = z.coerce.number();
       break;
 
     case "tel":

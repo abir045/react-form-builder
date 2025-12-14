@@ -8,19 +8,41 @@ interface SelectInputProps {
   field: FieldConfig;
   register: UseFormRegister<FieldValues>;
   error?: FieldError;
+  classNames?: {
+    fieldWrapper?: string;
+    label?: string;
+    select?: string;
+    error?: string;
+  };
 }
 
 export const SelectInput: React.FC<SelectInputProps> = ({
   field,
   register,
   error,
+  classNames = {},
 }) => {
+  const wrapperClasses = `space-y-2 ${
+    field.wrapperClassName || classNames.fieldWrapper || ""
+  }`;
+
+  const labelClasses = `block text-sm font-medium text-gray-700 ${
+    field.labelClassName || classNames.label || ""
+  }`;
+
+  const baseSelectStyles = `w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500`;
+  const errorBorderClass = error ? "border-red-500" : "border-gray-300";
+  const selectClasses = `${baseSelectStyles} ${errorBorderClass} ${
+    field.inputClassName || classNames.select || ""
+  }`;
+
+  const errorClasses = `text-sm text-red-600 ${
+    field.errorClassName || classNames.error || ""
+  }`;
+
   return (
-    <div className="mb-4">
-      <label
-        htmlFor={field.name}
-        className="block text-sm font-medium text-gray-700 mb-1"
-      >
+    <div className={wrapperClasses}>
+      <label htmlFor={field.name} className={labelClasses}>
         {field.label}
         {field.required && <span className="text-red-500 ml-1">*</span>}
       </label>
@@ -28,17 +50,13 @@ export const SelectInput: React.FC<SelectInputProps> = ({
       <select
         id={field.name}
         disabled={field.disabled}
-        className={clsx(
-          "w-full px-3 py-2 border rounded-lg",
-          "focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-          "transition-colors duration-200",
-          "bg-white",
-          error ? "border-red-500 focus:ring-red-500" : "border-gray-300",
-          field.disabled && "bg-gray-100 cursor-not-allowed opacity-60"
-        )}
+        className={selectClasses}
         {...register(field.name)}
       >
-        <option value="">-- Select an option --</option>
+        <option value="">
+          {" "}
+          {field.placeholder || `Select ${field.label}`}
+        </option>
         {field.options?.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -51,7 +69,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
       )}
 
       {error && (
-        <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+        <p className={errorClasses}>
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"

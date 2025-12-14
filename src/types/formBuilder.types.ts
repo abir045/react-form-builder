@@ -40,7 +40,7 @@ export interface Option {
 export interface FieldConfig {
   name: string;
   type: FieldType;
-  label: string;
+  label?: string;
   placeholder?: string;
   defaultValue?: string | number | boolean | Date | null;
   required?: boolean;
@@ -52,6 +52,13 @@ export interface FieldConfig {
   rows?: number; // for textarea
   disabled?: boolean;
   helperText?: string; // hint text below field
+
+  // Add field-level styling
+  className?: string;
+  labelClassName?: string;
+  inputClassName?: string;
+  errorClassName?: string;
+  wrapperClassName?: string;
 }
 
 export interface StepConfig {
@@ -62,18 +69,20 @@ export interface StepConfig {
 }
 
 export interface FormConfig {
-  formId: string;
+  formId?: string;
   title?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
   description?: string;
   multiStep?: boolean;
+  resetOnSuccess?: boolean;
   steps?: StepConfig[];
   fields?: FieldConfig[];
   submitButton?: {
     text?: string;
     loadingText?: string;
+    className?: string;
   };
-  autoSave?: boolean;
-  autoSaveDelay?: number; // milliseconds
 }
 
 // Generic type for form data - can be customized per form
@@ -81,7 +90,22 @@ export type FormData = Record<string, unknown>;
 
 export interface FormBuilderProps {
   config: FormConfig;
-  onSubmit: (data: FormData) => void | Promise<void>;
+  onSubmit?: (data: Record<string, unknown>) => void | Promise<void>;
+  onSuccess?: (data: Record<string, unknown>) => void | Promise<void>;
   onError?: (errors: Record<string, unknown>) => void;
   className?: string;
+  classNames?: {
+    container?: string; // Form container
+    form?: string; // Form element
+    fieldWrapper?: string; // Each field wrapper
+    label?: string; // All labels
+    input?: string; // All input fields
+    textarea?: string; // Textareas
+    select?: string; // Select dropdowns
+    checkbox?: string; // Checkboxes
+    radio?: string; // Radio buttons
+    error?: string; // Error messages
+    button?: string; // Submit button
+    buttonDisabled?: string; // Submit button when disabled
+  };
 }

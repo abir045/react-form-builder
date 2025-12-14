@@ -4,160 +4,160 @@ import { FormBuilder } from "../components/FormBuilder";
 import type { FormConfig } from "../types/formBuilder.types";
 // import { FormConfig } from '../types/formBuilder.types';
 
-const registrationConfig: FormConfig = {
-  formId: "user-registration",
-  title: "Create Your Account",
-  description: "Join our platform today and get started",
-  fields: [
-    {
-      name: "fullName",
-      type: "text",
-      label: "Full Name",
-      placeholder: "Enter your full name",
-      required: true,
-      validation: {
-        minLength: 3,
-        message: "Name must be at least 3 characters",
-      },
-      helperText: "Please enter your legal name",
-    },
-    {
-      name: "email",
-      type: "email",
-      label: "Email Address",
-      placeholder: "you@example.com",
-      required: true,
-      helperText: "We'll never share your email",
-    },
-    {
-      name: "phone",
-      type: "tel",
-      label: "Phone Number",
-      placeholder: "01712345678",
-      required: true,
-      helperText: "Bangladesh phone number format",
-    },
-    {
-      name: "age",
-      type: "number",
-      label: "Age",
-      placeholder: "Enter your age",
-      required: true,
-      validation: {
-        min: 18,
-        max: 100,
-        message: "You must be between 18 and 100 years old",
-      },
-    },
-    {
-      name: "country",
-      type: "select",
-      label: "Country",
-      required: true,
-      options: [
-        { value: "bd", label: "Bangladesh" },
-        { value: "in", label: "India" },
-        { value: "pk", label: "Pakistan" },
-        { value: "us", label: "United States" },
-        { value: "uk", label: "United Kingdom" },
-      ],
-    },
-    {
-      name: "hasExperience",
-      type: "select",
-      label: "Do you have programming experience?",
-      required: true,
-      options: [
-        { value: "yes", label: "Yes" },
-        { value: "no", label: "No" },
-      ],
-    },
-    {
-      name: "yearsOfExperience",
-      type: "number",
-      label: "Years of Experience",
-      placeholder: "Enter years",
-      required: true,
-      conditionalLogic: {
-        show: {
-          when: "hasExperience",
-          equals: "yes",
-        },
-      },
-      validation: {
-        min: 0,
-        max: 50,
-      },
-    },
-    {
-      name: "newsletter",
-      type: "checkbox",
-      label: "Subscribe to our newsletter for updates and tips",
-      defaultValue: false,
-      helperText: "You can unsubscribe at any time",
-    },
-    {
-      name: "terms",
-      type: "checkbox",
-      label: "I agree to the Terms and Conditions",
-      required: true,
-    },
-  ],
-  submitButton: {
-    text: "Create Account",
-    loadingText: "Creating your account...",
-  },
-  autoSave: true,
-  autoSaveDelay: 2000,
-};
+// const registrationConfig: FormConfig = {
+//   formId: "user-registration",
+//   title: "Create Your Account",
+//   description: "Join our platform today and get started",
+//   fields: [
+//     {
+//       name: "fullName",
+//       type: "text",
+//       label: "Full Name",
+//       placeholder: "Enter your full name",
+//       required: true,
+//       validation: {
+//         minLength: 3,
+//         message: "Name must be at least 3 characters",
+//       },
+//       helperText: "Please enter your legal name",
+//     },
+//     {
+//       name: "email",
+//       type: "email",
+//       label: "Email Address",
+//       placeholder: "you@example.com",
+//       required: true,
+//       helperText: "We'll never share your email",
+//     },
+//     {
+//       name: "phone",
+//       type: "tel",
+//       label: "Phone Number",
+//       placeholder: "01712345678",
+//       required: true,
+//       helperText: "Bangladesh phone number format",
+//     },
+//     {
+//       name: "age",
+//       type: "number",
+//       label: "Age",
+//       placeholder: "Enter your age",
+//       required: true,
+//       validation: {
+//         min: 18,
+//         max: 100,
+//         message: "You must be between 18 and 100 years old",
+//       },
+//     },
+//     {
+//       name: "country",
+//       type: "select",
+//       label: "Country",
+//       required: true,
+//       options: [
+//         { value: "bd", label: "Bangladesh" },
+//         { value: "in", label: "India" },
+//         { value: "pk", label: "Pakistan" },
+//         { value: "us", label: "United States" },
+//         { value: "uk", label: "United Kingdom" },
+//       ],
+//     },
+//     {
+//       name: "hasExperience",
+//       type: "select",
+//       label: "Do you have programming experience?",
+//       required: true,
+//       options: [
+//         { value: "yes", label: "Yes" },
+//         { value: "no", label: "No" },
+//       ],
+//     },
+//     {
+//       name: "yearsOfExperience",
+//       type: "number",
+//       label: "Years of Experience",
+//       placeholder: "Enter years",
+//       required: true,
+//       conditionalLogic: {
+//         show: {
+//           when: "hasExperience",
+//           equals: "yes",
+//         },
+//       },
+//       validation: {
+//         min: 0,
+//         max: 50,
+//       },
+//     },
+//     {
+//       name: "newsletter",
+//       type: "checkbox",
+//       label: "Subscribe to our newsletter for updates and tips",
+//       defaultValue: false,
+//       helperText: "You can unsubscribe at any time",
+//     },
+//     {
+//       name: "terms",
+//       type: "checkbox",
+//       label: "I agree to the Terms and Conditions",
+//       required: true,
+//     },
+//   ],
+//   submitButton: {
+//     text: "Create Account",
+//     loadingText: "Creating your account...",
+//   },
+//   autoSave: true,
+//   autoSaveDelay: 2000,
+// };
 
-const contactFormConfig: FormConfig = {
-  formId: "contact-form", // Add this - it's required!
-  title: "Idea to Innovation: How to Build Your AI Project",
-  fields: [
-    {
-      type: "text",
-      label: "Your Name",
-      name: "yourName",
-      placeholder: "Enter your name",
-      required: true,
-      validation: {
-        minLength: 2, // Changed from 'min' to 'minLength' and moved inside validation
-      },
-    },
-    {
-      type: "text",
-      label: "Institute / Organization",
-      name: "institute",
-      placeholder: "Enter your institute or organization",
-      required: true,
-    },
-    {
-      type: "text",
-      label: "Department / Designation",
-      name: "designation",
-      placeholder: "Enter your department or designation",
-      required: true,
-    },
-    {
-      type: "tel", // Changed from 'text' to 'tel' for phone validation
-      label: "Contact Number (WhatsApp)",
-      name: "contactNumber",
-      placeholder: "+8801XXXXXXXXX",
-      required: true,
-      validation: {
-        minLength: 10, // Changed from 'min' to 'minLength'
-        maxLength: 15, // Changed from 'max' to 'maxLength'
-        pattern: "^\\+?[0-9]{10,15}$", // Optional: regex for phone validation
-        message: "Please enter a valid phone number",
-      },
-    },
-  ],
-  submitButton: {
-    text: "Submit",
-    loadingText: "Submitting...",
-  },
-};
+// const contactFormConfig: FormConfig = {
+//   formId: "contact-form", // Add this - it's required!
+//   title: "Idea to Innovation: How to Build Your AI Project",
+//   fields: [
+//     {
+//       type: "text",
+//       label: "Your Name",
+//       name: "yourName",
+//       placeholder: "Enter your name",
+//       required: true,
+//       validation: {
+//         minLength: 2, // Changed from 'min' to 'minLength' and moved inside validation
+//       },
+//     },
+//     {
+//       type: "text",
+//       label: "Institute / Organization",
+//       name: "institute",
+//       placeholder: "Enter your institute or organization",
+//       required: true,
+//     },
+//     {
+//       type: "text",
+//       label: "Department / Designation",
+//       name: "designation",
+//       placeholder: "Enter your department or designation",
+//       required: true,
+//     },
+//     {
+//       type: "tel", // Changed from 'text' to 'tel' for phone validation
+//       label: "Contact Number (WhatsApp)",
+//       name: "contactNumber",
+//       placeholder: "+8801XXXXXXXXX",
+//       required: true,
+//       validation: {
+//         minLength: 10, // Changed from 'min' to 'minLength'
+//         maxLength: 15, // Changed from 'max' to 'maxLength'
+//         pattern: "^\\+?[0-9]{10,15}$", // Optional: regex for phone validation
+//         message: "Please enter a valid phone number",
+//       },
+//     },
+//   ],
+//   submitButton: {
+//     text: "Submit",
+//     loadingText: "Submitting...",
+//   },
+// };
 
 const webdevApplication: FormConfig = {
   formId: "web-developer-application",
