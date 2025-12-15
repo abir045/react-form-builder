@@ -3,14 +3,14 @@
 import React from "react";
 // import { UseFormRegister, FieldError, FieldValues } from 'react-hook-form';
 // import { FieldConfig } from '../types/formBuilder.types';
-import { TextInput } from "./FieldTypes/TextInput";
-import { SelectInput } from "./FieldTypes/SelectInput";
-import { CheckboxInput } from "./FieldTypes/CheckboxInput";
-import type { FieldConfig } from "../types/formBuilder.types";
+import { TextInput as DefaultTextInput } from "./FieldTypes/TextInput";
+import { SelectInput as DefaultSelectInput } from "./FieldTypes/SelectInput";
+import { CheckboxInput as DefaultCheckboxInput } from "./FieldTypes/CheckboxInput";
+import type { ComponentLibrary, FieldConfig } from "../types/formBuilder.types";
 import type { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
-import { TextareaInput } from "./FieldTypes/TextareaInput";
-import { RadioInput } from "./FieldTypes/RadioInput";
-import { DateInput } from "./FieldTypes/DateInput";
+import { TextareaInput as DefaultTextareaInput } from "./FieldTypes/TextareaInput";
+import { RadioInput as DefaultRadioInput } from "./FieldTypes/RadioInput";
+import { DateInput as DefaultDateInput } from "./FieldTypes/DateInput";
 import { FileInput } from "./FieldTypes/FileInput";
 
 interface FormFieldProps {
@@ -28,6 +28,7 @@ interface FormFieldProps {
     radio?: string;
     error?: string;
   };
+  components: ComponentLibrary;
 }
 
 export const FormField: React.FC<FormFieldProps> = ({
@@ -36,6 +37,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   error,
   watchValues,
   classNames = {},
+  components = {},
 }) => {
   // Handle conditional logic - hide field if conditions not met
   if (field.conditionalLogic?.show) {
@@ -52,6 +54,14 @@ export const FormField: React.FC<FormFieldProps> = ({
       return null;
     }
   }
+
+  // ADD THIS SECTION: Use custom components if provided, otherwise use defaults
+  const TextInput = components.TextInput || DefaultTextInput;
+  const TextareaInput = components.TextareaInput || DefaultTextareaInput;
+  const SelectInput = components.SelectInput || DefaultSelectInput;
+  const CheckboxInput = components.CheckboxInput || DefaultCheckboxInput;
+  const RadioInput = components.RadioInput || DefaultRadioInput;
+  const DateInput = components.DateInput || DefaultDateInput;
 
   // Merge default classes with custom classes
   // const wrapperClasses = `space-y-2 ${

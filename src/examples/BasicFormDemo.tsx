@@ -1,6 +1,6 @@
 // src/examples/BasicFormDemo.tsx
 
-import { DateInput } from "../components/FieldTypes/DateInput";
+// import { DateInput } from "../components/FieldTypes/DateInput";
 import { FormBuilder } from "../components/FormBuilder";
 import type { FormConfig } from "../types/formBuilder.types";
 // import { FormConfig } from '../types/formBuilder.types';
@@ -956,135 +956,382 @@ import type { FormConfig } from "../types/formBuilder.types";
 //   ],
 // };
 
-const allFieldsConfig: FormConfig = {
-  formId: "test-form-all-fields",
-  title: "Form Builder Test",
-  description:
-    "This form includes all supported field types for validation testing",
-  multiStep: false,
-  resetOnSuccess: true,
+// const allFieldsConfig: FormConfig = {
+//   formId: "test-form-all-fields",
+//   title: "Form Builder Test",
+//   description:
+//     "This form includes all supported field types for validation testing",
+//   multiStep: false,
+//   resetOnSuccess: true,
+//   fields: [
+//     {
+//       name: "fullName",
+//       type: "text",
+//       label: "Full Name",
+//       placeholder: "Enter your full name",
+//       required: true,
+//       validation: {
+//         minLength: 3,
+//         maxLength: 50,
+//       },
+//     },
+//     {
+//       name: "email",
+//       type: "email",
+//       label: "Email Address",
+//       placeholder: "example@email.com",
+//       required: true,
+//     },
+//     {
+//       name: "password",
+//       type: "password",
+//       label: "Password",
+//       required: true,
+//       validation: {
+//         minLength: 8,
+//       },
+//     },
+//     {
+//       name: "phone",
+//       type: "tel",
+//       label: "Phone Number",
+//       placeholder: "+1234567890",
+//       required: true,
+//       validation: {
+//         minLength: 10,
+//         maxLength: 15,
+//       },
+//     },
+//     {
+//       name: "age",
+//       type: "number",
+//       label: "Age",
+//       required: true,
+//       validation: {
+//         min: 18,
+//         max: 65,
+//       },
+//     },
+//     {
+//       name: "bio",
+//       type: "textarea",
+//       label: "Bio",
+//       placeholder: "Tell us about yourself",
+//       validation: {
+//         maxLength: 200,
+//       },
+//     },
+//     {
+//       name: "website",
+//       type: "url",
+//       label: "Website",
+//       placeholder: "https://example.com",
+//     },
+//     {
+//       name: "birthDate",
+//       type: "date",
+//       label: "Birth Date",
+//       required: true,
+//     },
+//     {
+//       name: "gender",
+//       type: "radio",
+//       label: "Gender",
+//       required: true,
+//       options: [
+//         { label: "Male", value: "male" },
+//         { label: "Female", value: "female" },
+//         { label: "Other", value: "other" },
+//       ],
+//     },
+//     {
+//       name: "country",
+//       type: "select",
+//       label: "Country",
+//       required: true,
+//       options: [
+//         { label: "United States", value: "US" },
+//         { label: "Bangladesh", value: "BD" },
+//         { label: "United Kingdom", value: "UK" },
+//       ],
+//     },
+//     {
+//       name: "terms",
+//       type: "checkbox",
+//       label: "I agree to the terms and conditions",
+//       required: true,
+//     },
+//     {
+//       name: "resume",
+//       type: "file",
+//       label: "Upload Resume",
+//       required: true,
+//       accept: ".pdf,.doc,.docx",
+//       maxSize: 2097152,
+//     },
+//     {
+//       name: "sectionHeading",
+//       type: "heading",
+//       label: "Additional Information",
+//     },
+//     {
+//       name: "portfolio",
+//       type: "url",
+//       label: "Portfolio URL",
+//       placeholder: "https://yourportfolio.com",
+//     },
+//   ],
+//   submitButton: {
+//     text: "Submit Form",
+//     loadingText: "Submitting...",
+//   },
+// };
+
+const selectInputTestJSON: FormConfig = {
+  formId: "select-styling-test",
+  title: "Select Input Styling Test",
+  titleClassName: "text-4xl font-black text-center text-purple-700 mb-2",
+  description: "Testing all select input styling options",
+  descriptionClassName: "text-center text-gray-600 mb-8",
+
+  submitButton: {
+    text: "Submit Selections",
+    loadingText: "Submitting...",
+    className:
+      "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 font-bold text-lg",
+  },
+
   fields: [
-    {
-      name: "fullName",
-      type: "text",
-      label: "Full Name",
-      placeholder: "Enter your full name",
-      required: true,
-      validation: {
-        minLength: 3,
-        maxLength: 50,
-      },
-    },
-    {
-      name: "email",
-      type: "email",
-      label: "Email Address",
-      placeholder: "example@email.com",
-      required: true,
-    },
-    {
-      name: "password",
-      type: "password",
-      label: "Password",
-      required: true,
-      validation: {
-        minLength: 8,
-      },
-    },
-    {
-      name: "phone",
-      type: "tel",
-      label: "Phone Number",
-      placeholder: "+1234567890",
-      required: true,
-      validation: {
-        minLength: 10,
-        maxLength: 15,
-      },
-    },
-    {
-      name: "age",
-      type: "number",
-      label: "Age",
-      required: true,
-      validation: {
-        min: 18,
-        max: 65,
-      },
-    },
-    {
-      name: "bio",
-      type: "textarea",
-      label: "Bio",
-      placeholder: "Tell us about yourself",
-      validation: {
-        maxLength: 200,
-      },
-    },
-    {
-      name: "website",
-      type: "url",
-      label: "Website",
-      placeholder: "https://example.com",
-    },
-    {
-      name: "birthDate",
-      type: "date",
-      label: "Birth Date",
-      required: true,
-    },
-    {
-      name: "gender",
-      type: "radio",
-      label: "Gender",
-      required: true,
-      options: [
-        { label: "Male", value: "male" },
-        { label: "Female", value: "female" },
-        { label: "Other", value: "other" },
-      ],
-    },
+    // ===== SELECT 1: Purple Theme =====
     {
       name: "country",
       type: "select",
-      label: "Country",
+      label: "Select Your Country",
+      placeholder: "Choose a country",
       required: true,
       options: [
-        { label: "United States", value: "US" },
-        { label: "Bangladesh", value: "BD" },
-        { label: "United Kingdom", value: "UK" },
+        { label: "United States", value: "us" },
+        { label: "United Kingdom", value: "uk" },
+        { label: "Canada", value: "ca" },
+        { label: "Australia", value: "au" },
+        { label: "Germany", value: "de" },
+        { label: "France", value: "fr" },
+        { label: "Japan", value: "jp" },
+        { label: "Bangladesh", value: "bd" },
       ],
+      labelClassName:
+        "text-2xl font-extrabold text-purple-700 uppercase tracking-wide",
+      inputClassName:
+        "bg-purple-50 border-4 border-purple-400 focus:border-purple-600 focus:ring-4 focus:ring-purple-200 rounded-2xl text-lg font-bold text-purple-900 cursor-pointer shadow-lg hover:shadow-xl transition-all",
+      wrapperClassName:
+        "bg-gradient-to-br from-purple-100 to-pink-100 p-8 rounded-3xl shadow-2xl mb-6",
+      errorClassName: "text-red-600 font-black text-base mt-2",
     },
+
+    // ===== SELECT 2: Blue Theme =====
     {
-      name: "terms",
-      type: "checkbox",
-      label: "I agree to the terms and conditions",
+      name: "experience_level",
+      type: "select",
+      label: "Experience Level",
+      placeholder: "Select your level",
       required: true,
+      options: [
+        { label: "Beginner", value: "beginner" },
+        { label: "Intermediate", value: "intermediate" },
+        { label: "Advanced", value: "advanced" },
+        { label: "Expert", value: "expert" },
+      ],
+      labelClassName: "text-xl font-bold text-blue-800",
+      inputClassName:
+        "bg-blue-100 border-2 border-blue-500 rounded-xl text-blue-900 font-semibold shadow-inner hover:bg-blue-200 transition-colors",
+      wrapperClassName:
+        "bg-blue-50 p-6 rounded-2xl border-l-8 border-blue-600 mb-6",
+      errorClassName: "text-red-700 italic font-semibold",
     },
+
+    // ===== SELECT 3: Green Theme with Emoji =====
     {
-      name: "resume",
-      type: "file",
-      label: "Upload Resume",
+      name: "favorite_fruit",
+      type: "select",
+      label: "🍎 Favorite Fruit",
+      placeholder: "Pick your favorite",
+      required: false,
+      options: [
+        { label: "🍎 Apple", value: "apple" },
+        { label: "🍌 Banana", value: "banana" },
+        { label: "🍊 Orange", value: "orange" },
+        { label: "🍇 Grapes", value: "grapes" },
+        { label: "🍓 Strawberry", value: "strawberry" },
+        { label: "🥭 Mango", value: "mango" },
+        { label: "🍉 Watermelon", value: "watermelon" },
+      ],
+      labelClassName: "text-3xl font-black text-green-700",
+      inputClassName:
+        "bg-green-50 border-green-400 border-3 rounded-full px-6 py-3 text-green-900 font-bold text-lg shadow-md hover:shadow-2xl transition-shadow cursor-pointer",
+      wrapperClassName:
+        "bg-gradient-to-r from-green-100 to-teal-100 p-6 rounded-3xl mb-6",
+      errorClassName: "text-red-600 font-bold",
+    },
+
+    // ===== SELECT 4: Orange/Yellow Theme =====
+    {
+      name: "programming_language",
+      type: "select",
+      label: "Primary Programming Language",
+      placeholder: "Choose language",
       required: true,
-      accept: ".pdf,.doc,.docx",
-      maxSize: 2097152,
+      options: [
+        { label: "JavaScript", value: "javascript" },
+        { label: "TypeScript", value: "typescript" },
+        { label: "Python", value: "python" },
+        { label: "Java", value: "java" },
+        { label: "C++", value: "cpp" },
+        { label: "Go", value: "go" },
+        { label: "Rust", value: "rust" },
+        { label: "Ruby", value: "ruby" },
+      ],
+      labelClassName: "text-2xl font-extrabold text-orange-700 uppercase",
+      inputClassName:
+        "bg-yellow-50 border-4 border-orange-500 focus:border-orange-700 rounded-2xl text-orange-900 font-mono text-base shadow-xl cursor-pointer",
+      wrapperClassName:
+        "bg-orange-100 p-8 rounded-2xl border-4 border-orange-300 mb-6",
+      errorClassName: "text-red-700 font-black text-lg",
     },
+
+    // ===== SELECT 5: Pink/Rose Theme =====
     {
-      name: "sectionHeading",
-      type: "heading",
-      label: "Additional Information",
+      name: "shirt_size",
+      type: "select",
+      label: "T-Shirt Size",
+      placeholder: "Select size",
+      required: true,
+      options: [
+        { label: "Extra Small (XS)", value: "xs" },
+        { label: "Small (S)", value: "s" },
+        { label: "Medium (M)", value: "m" },
+        { label: "Large (L)", value: "l" },
+        { label: "Extra Large (XL)", value: "xl" },
+        { label: "2XL", value: "xxl" },
+        { label: "3XL", value: "xxxl" },
+      ],
+      labelClassName: "text-xl font-bold text-pink-700",
+      inputClassName:
+        "bg-pink-50 border-pink-500 border-2 rounded-lg text-pink-900 font-semibold text-lg py-3 shadow-lg hover:bg-pink-100 transition-colors cursor-pointer",
+      wrapperClassName:
+        "bg-gradient-to-br from-pink-100 to-rose-100 p-6 rounded-3xl shadow-xl mb-6",
+      errorClassName: "text-red-600 font-bold",
     },
+
+    // ===== SELECT 6: Dark/Gray Theme =====
     {
-      name: "portfolio",
-      type: "url",
-      label: "Portfolio URL",
-      placeholder: "https://yourportfolio.com",
+      name: "preferred_theme",
+      type: "select",
+      label: "Preferred Theme",
+      placeholder: "Choose theme",
+      required: true,
+      options: [
+        { label: "Light Mode", value: "light" },
+        { label: "Dark Mode", value: "dark" },
+        { label: "Auto (System)", value: "auto" },
+      ],
+      labelClassName: "text-2xl font-bold text-gray-800",
+      inputClassName:
+        "bg-gray-100 border-gray-500 border-2 rounded-xl text-gray-900 font-bold shadow-inner hover:bg-gray-200 cursor-pointer",
+      wrapperClassName:
+        "bg-gray-200 p-6 rounded-2xl border-2 border-gray-400 mb-6",
+      errorClassName: "text-red-700 font-semibold",
+    },
+
+    // ===== SELECT 7: Indigo Theme with Gradient =====
+    {
+      name: "notification_preference",
+      type: "select",
+      label: "Notification Preferences",
+      placeholder: "How should we notify you?",
+      required: true,
+      options: [
+        { label: "All Notifications", value: "all" },
+        { label: "Important Only", value: "important" },
+        { label: "Weekly Digest", value: "weekly" },
+        { label: "None", value: "none" },
+      ],
+      labelClassName: "text-xl font-extrabold text-indigo-700",
+      inputClassName:
+        "bg-gradient-to-r from-indigo-100 to-purple-100 border-indigo-400 border-3 rounded-2xl text-indigo-900 font-semibold text-lg py-3 shadow-2xl cursor-pointer hover:from-indigo-200 hover:to-purple-200 transition-all",
+      wrapperClassName:
+        "bg-white p-8 rounded-3xl border-4 border-indigo-300 shadow-2xl mb-6",
+      errorClassName: "text-red-600 font-black",
+    },
+
+    // ===== SELECT 8: Teal/Cyan Theme =====
+    {
+      name: "timezone",
+      type: "select",
+      label: "Timezone",
+      placeholder: "Select your timezone",
+      required: true,
+      options: [
+        { label: "PST (UTC-8)", value: "pst" },
+        { label: "MST (UTC-7)", value: "mst" },
+        { label: "CST (UTC-6)", value: "cst" },
+        { label: "EST (UTC-5)", value: "est" },
+        { label: "GMT (UTC+0)", value: "gmt" },
+        { label: "BST (UTC+6)", value: "bst" },
+        { label: "JST (UTC+9)", value: "jst" },
+      ],
+      labelClassName: "text-2xl font-black text-teal-700",
+      inputClassName:
+        "bg-teal-50 border-teal-500 border-4 focus:border-teal-700 rounded-full text-center text-teal-900 font-bold text-lg shadow-lg cursor-pointer",
+      wrapperClassName:
+        "bg-gradient-to-br from-teal-100 to-cyan-100 p-8 rounded-3xl mb-6",
+      errorClassName: "text-red-700 font-extrabold",
+    },
+
+    // ===== SELECT 9: Red/Crimson Theme =====
+    {
+      name: "urgency_level",
+      type: "select",
+      label: "⚠️ Urgency Level",
+      placeholder: "Select urgency",
+      required: true,
+      options: [
+        { label: "🔴 Critical - Immediate", value: "critical" },
+        { label: "🟠 High - Within 24hrs", value: "high" },
+        { label: "🟡 Medium - This Week", value: "medium" },
+        { label: "🟢 Low - Whenever", value: "low" },
+      ],
+      labelClassName: "text-2xl font-black text-red-700 uppercase",
+      inputClassName:
+        "bg-red-50 border-red-600 border-4 rounded-lg text-red-900 font-bold text-lg py-4 shadow-2xl cursor-pointer hover:bg-red-100 transition-colors",
+      wrapperClassName:
+        "bg-red-100 p-8 rounded-2xl border-l-8 border-red-600 mb-6",
+      errorClassName: "text-red-800 font-black text-xl",
+    },
+
+    // ===== SELECT 10: Minimal/Clean Theme =====
+    {
+      name: "language",
+      type: "select",
+      label: "Preferred Language",
+      placeholder: "Choose language",
+      required: false,
+      options: [
+        { label: "English", value: "en" },
+        { label: "Spanish", value: "es" },
+        { label: "French", value: "fr" },
+        { label: "German", value: "de" },
+        { label: "Chinese", value: "zh" },
+        { label: "Japanese", value: "ja" },
+        { label: "Arabic", value: "ar" },
+        { label: "Bengali", value: "bn" },
+      ],
+      labelClassName: "text-base font-medium text-gray-700",
+      inputClassName:
+        "bg-white border border-gray-300 rounded-md text-gray-900 hover:border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 cursor-pointer",
+      wrapperClassName: "p-4 bg-white rounded-lg shadow-sm mb-6",
+      errorClassName: "text-sm text-red-600",
     },
   ],
-  submitButton: {
-    text: "Submit Form",
-    loadingText: "Submitting...",
-  },
 };
 
 export const BasicFormDemo = () => {
@@ -1096,16 +1343,18 @@ export const BasicFormDemo = () => {
     alert(`Welcome, ${data.fullName}! Your account has been created.`);
   };
 
-  const handleError = (errors: Record<string, unknown>) => {
-    console.error("❌ Form submission failed:", errors);
-  };
+  // const handleError = (errors: Record<string, unknown>) => {
+  //   console.error("❌ Form submission failed:", errors);
+  // };
 
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <FormBuilder
-        config={allFieldsConfig}
+        config={selectInputTestJSON}
         onSubmit={handleSubmit}
-        onError={handleError}
+        onError={(error) => {
+          console.log(error.message);
+        }}
         classNames={{
           container: "shadow-2xl",
           input: "text-base",

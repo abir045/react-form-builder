@@ -14,9 +14,10 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
   config,
   onSubmit,
   onSuccess,
-  // onError,
+  onError,
   className = "",
   classNames = {},
+  components = {},
 }) => {
   // Get fields from config (support both single and multi-step forms)
   const fields = config.multiStep ? [] : config.fields || [];
@@ -58,7 +59,7 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
 
       // Access the file from FileList
     } catch (error) {
-      // if(onError) onError(error as Error )
+      if (onError) onError(error as Error);
       console.error("Form submission error:", error);
 
       throw error;
@@ -107,6 +108,7 @@ export const FormBuilder: React.FC<FormBuilderProps> = ({
             error={errors[field.name] as any}
             watchValues={watchValues}
             classNames={classNames}
+            components={components}
           />
         ))}
 

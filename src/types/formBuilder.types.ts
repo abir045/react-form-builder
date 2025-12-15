@@ -1,4 +1,6 @@
 // src/types/formBuilder.types.ts
+import type { ComponentType } from "react";
+import type { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 
 export type FieldType =
   | "text"
@@ -14,6 +16,32 @@ export type FieldType =
   | "file"
   | "heading"
   | "url";
+
+export interface BaseFieldComponentProps {
+  field: FieldConfig;
+  register: UseFormRegister<FieldValues>;
+  error?: FieldError;
+  classNames?: {
+    fieldWrapper?: string;
+    label?: string;
+    input?: string;
+    textarea?: string;
+    select?: string;
+    checkbox?: string;
+    radio?: string;
+    error?: string;
+  };
+}
+
+// Interface for the component library
+export interface ComponentLibrary {
+  TextInput?: ComponentType<BaseFieldComponentProps>;
+  TextareaInput?: ComponentType<BaseFieldComponentProps>;
+  SelectInput?: ComponentType<BaseFieldComponentProps>;
+  CheckboxInput?: ComponentType<BaseFieldComponentProps>;
+  RadioInput?: ComponentType<BaseFieldComponentProps>;
+  DateInput?: ComponentType<BaseFieldComponentProps>;
+}
 
 export interface ValidationRule {
   required?: boolean;
@@ -110,23 +138,8 @@ export interface FormBuilderProps {
   config: FormConfig;
   onSubmit?: (data: Record<string, unknown>) => void | Promise<void>;
   onSuccess?: (data: Record<string, unknown>) => void | Promise<void>;
-  onError?: (errors: Record<string, unknown>) => void;
+  onError?: (error: Error) => void;
   className?: string;
   classNames?: FormClassNames;
-  // classNames?: {
-  //   container?: string; // Form container
-  //   form?: string; // Form element
-  //   title?: string;
-  //   description?: string;
-  //   fieldWrapper?: string; // Each field wrapper
-  //   label?: string; // All labels
-  //   input?: string; // All input fields
-  //   textarea?: string; // Textareas
-  //   select?: string; // Select dropdowns
-  //   checkbox?: string; // Checkboxes
-  //   radio?: string; // Radio buttons
-  //   error?: string; // Error messages
-  //   button?: string; // Submit button
-  //   buttonDisabled?: string; // Submit button when disabled
-  // };
+  components?: ComponentLibrary;
 }
